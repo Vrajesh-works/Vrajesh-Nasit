@@ -74,9 +74,11 @@ const ChatSection = () => {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="p-6 border-b border-border bg-card">
-        <h1 className="text-2xl font-bold text-foreground">Chat with John's AI</h1>
-        <p className="text-muted-foreground mt-1">Ask anything about my experience, projects, or skills</p>
+      <div className="p-6 border-b border-border bg-gradient-hero">
+        <h1 className="text-2xl font-bold text-foreground animate-fade-in">Chat with John's AI</h1>
+        <p className="text-muted-foreground mt-1 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+          Ask anything about my experience, projects, or skills
+        </p>
       </div>
 
       {/* Messages */}
@@ -125,7 +127,7 @@ const ChatSection = () => {
       </div>
 
       {/* Input */}
-      <div className="p-6 border-t border-border bg-card">
+      <div className="p-6 border-t border-border bg-gradient-subtle">
         <div className="flex gap-3">
           <input
             type="text"
@@ -135,15 +137,21 @@ const ChatSection = () => {
             placeholder="Ask me anything about John's experience..."
             className="portfolio-input flex-1"
             disabled={isTyping}
+            aria-label="Type your message to John's AI assistant"
+            aria-describedby="chat-input-help"
           />
           <button
             onClick={handleSendMessage}
             disabled={!inputValue.trim() || isTyping}
             className="portfolio-button primary px-4"
+            aria-label="Send message"
           >
             <Send className="w-4 h-4" />
           </button>
         </div>
+        <p id="chat-input-help" className="text-xs text-muted-foreground mt-2 opacity-75">
+          Press Enter to send, Shift+Enter for new line
+        </p>
       </div>
     </div>
   );

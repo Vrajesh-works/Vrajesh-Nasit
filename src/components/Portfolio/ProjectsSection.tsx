@@ -102,8 +102,8 @@ const ProjectsSection = () => {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-3 mb-8">
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+      <div className="flex flex-wrap gap-3 mb-8 animate-fade-in">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground font-medium">
           <Filter className="w-4 h-4" />
           <span>Filter by:</span>
         </div>
@@ -111,11 +111,9 @@ const ProjectsSection = () => {
           <button
             key={filter.id}
             onClick={() => setActiveFilter(filter.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-              activeFilter === filter.id
-                ? 'bg-primary text-primary-foreground shadow-glow'
-                : 'bg-muted text-muted-foreground hover:bg-muted/80'
-            }`}
+            className={`filter-pill ${activeFilter === filter.id ? 'active' : ''}`}
+            aria-pressed={activeFilter === filter.id}
+            aria-label={`Filter projects by ${filter.label}`}
           >
             {filter.label}
           </button>
@@ -124,20 +122,29 @@ const ProjectsSection = () => {
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {filteredProjects.map((project) => (
-          <div key={project.id} className="portfolio-card">
+        {filteredProjects.map((project, index) => (
+          <div 
+            key={project.id} 
+            className="portfolio-card animate-fade-in"
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
             {/* Project Image */}
-            <div className="w-full h-48 bg-muted rounded-lg mb-4 overflow-hidden">
-              <div className="w-full h-full bg-gradient-primary flex items-center justify-center text-primary-foreground text-sm">
+            <div className="w-full h-48 bg-gradient-hero rounded-lg mb-4 overflow-hidden relative group">
+              <div className="w-full h-full bg-gradient-primary flex items-center justify-center text-primary-foreground text-sm font-medium relative z-10">
                 {project.title} Preview
               </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
             </div>
 
             {/* Project Info */}
             <div className="space-y-4">
               <div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">{project.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{project.description}</p>
+                <h3 className="text-xl font-semibold text-foreground mb-2 hover:text-primary transition-colors duration-200">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                  {project.description}
+                </p>
               </div>
 
               {/* Technologies */}
@@ -145,7 +152,7 @@ const ProjectsSection = () => {
                 {project.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 bg-muted text-muted-foreground text-xs rounded-full font-medium"
+                    className="px-3 py-1 bg-muted text-muted-foreground text-xs rounded-full font-medium hover:bg-muted/80 transition-colors duration-200"
                   >
                     {tech}
                   </span>
@@ -157,6 +164,9 @@ const ProjectsSection = () => {
                 <a
                   href={project.githubUrl}
                   className="portfolio-button secondary flex-1 text-center"
+                  aria-label={`View ${project.title} source code on GitHub`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Github className="w-4 h-4" />
                   <span>Code</span>
@@ -164,6 +174,9 @@ const ProjectsSection = () => {
                 <a
                   href={project.liveUrl}
                   className="portfolio-button primary flex-1 text-center"
+                  aria-label={`View ${project.title} live demo`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <ExternalLink className="w-4 h-4" />
                   <span>Live Demo</span>
@@ -175,12 +188,15 @@ const ProjectsSection = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="text-center mt-12 p-8 bg-gradient-card rounded-2xl border border-border">
+      <div className="text-center mt-12 p-8 bg-gradient-hero rounded-2xl border border-border hover-lift">
         <h2 className="text-2xl font-bold text-foreground mb-3">Have a Project in Mind?</h2>
-        <p className="text-muted-foreground mb-6">
-          I'm always excited to work on new challenges and bring ideas to life.
+        <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+          I'm always excited to work on new challenges and bring innovative ideas to life.
         </p>
-        <button className="portfolio-button primary">
+        <button 
+          className="portfolio-button primary"
+          aria-label="Contact me to discuss your project"
+        >
           <span>Let's Build Something Amazing</span>
         </button>
       </div>

@@ -58,7 +58,7 @@ const ContactSection = () => {
   return (
     <div className="p-6">
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-8 animate-fade-in">
         <h1 className="text-3xl font-bold text-foreground mb-2">Get In Touch</h1>
         <p className="text-muted-foreground text-lg">
           Ready to bring your next project to life? Let's discuss how we can work together.
@@ -67,11 +67,11 @@ const ContactSection = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Contact Form */}
-        <div className="portfolio-card">
+        <div className="portfolio-card animate-fade-in">
           <h2 className="text-xl font-semibold text-foreground mb-6">Send a Message</h2>
           
           {isSubmitted && (
-            <div className="mb-6 p-4 bg-success/10 border border-success/20 rounded-lg flex items-center gap-3">
+            <div className="mb-6 p-4 bg-success/10 border border-success/20 rounded-lg flex items-center gap-3 animate-fade-in">
               <CheckCircle className="w-5 h-5 text-success" />
               <div>
                 <p className="text-success font-medium">Message sent successfully!</p>
@@ -80,11 +80,11 @@ const ContactSection = () => {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" noValidate>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                  Name *
+                  Name <span className="text-destructive">*</span>
                 </label>
                 <input
                   type="text"
@@ -95,12 +95,14 @@ const ContactSection = () => {
                   required
                   className="portfolio-input"
                   placeholder="Your full name"
+                  aria-describedby="name-error"
+                  autoComplete="given-name"
                 />
               </div>
               
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                  Email *
+                  Email <span className="text-destructive">*</span>
                 </label>
                 <input
                   type="email"
@@ -111,13 +113,15 @@ const ContactSection = () => {
                   required
                   className="portfolio-input"
                   placeholder="your.email@example.com"
+                  aria-describedby="email-error"
+                  autoComplete="email"
                 />
               </div>
             </div>
 
             <div>
               <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                Subject *
+                Subject <span className="text-destructive">*</span>
               </label>
               <input
                 type="text"
@@ -128,12 +132,13 @@ const ContactSection = () => {
                 required
                 className="portfolio-input"
                 placeholder="What's this about?"
+                aria-describedby="subject-error"
               />
             </div>
 
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                Message *
+                Message <span className="text-destructive">*</span>
               </label>
               <textarea
                 id="message"
@@ -144,6 +149,7 @@ const ContactSection = () => {
                 rows={6}
                 className="portfolio-input resize-none"
                 placeholder="Tell me about your project, timeline, and any specific requirements..."
+                aria-describedby="message-error"
               />
             </div>
 
@@ -151,6 +157,7 @@ const ContactSection = () => {
               type="submit"
               disabled={isSubmitting}
               className="portfolio-button primary w-full"
+              aria-describedby="submit-status"
             >
               {isSubmitting ? (
                 <>
@@ -164,27 +171,31 @@ const ContactSection = () => {
                 </>
               )}
             </button>
+            <p id="submit-status" className="sr-only">
+              {isSubmitting ? "Sending your message" : "Ready to send your message"}
+            </p>
           </form>
         </div>
 
         {/* Contact Info & Availability */}
         <div className="space-y-6">
           {/* Contact Information */}
-          <div className="portfolio-card">
+          <div className="portfolio-card animate-fade-in" style={{ animationDelay: '0.1s' }}>
             <h2 className="text-xl font-semibold text-foreground mb-6">Contact Information</h2>
             <div className="space-y-4">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
                 return (
-                  <div key={index} className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-primary" />
+                  <div key={index} className="flex items-center gap-4 hover-lift p-2 rounded-lg">
+                    <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center shadow-md">
+                      <Icon className="w-5 h-5 text-primary-foreground" />
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">{info.label}</p>
+                      <p className="text-sm text-muted-foreground font-medium">{info.label}</p>
                       <a
                         href={info.href}
-                        className="text-foreground font-medium hover:text-primary transition-colors"
+                        className="text-foreground font-medium hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-focus-ring rounded"
+                        aria-label={`${info.label}: ${info.value}`}
                       >
                         {info.value}
                       </a>
