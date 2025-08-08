@@ -226,7 +226,6 @@ const ContactSection = () => {
 
           {/* Quick Links */}
           <div className="portfolio-card">
-            <h2 className="text-xl font-semibold text-foreground mb-4">Let's Connect</h2>
             <div className="space-y-3">
               <a
                 href="#"
@@ -245,28 +244,6 @@ const ContactSection = () => {
         </div>
       </div>
 
-      {/* FAQ Section */}
-      <div className="mt-12 portfolio-card">
-        <h2 className="text-xl font-semibold text-foreground mb-6">Frequently Asked Questions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="font-medium text-foreground mb-2">What's your typical project timeline?</h3>
-            <p className="text-sm text-muted-foreground">Most projects take 2-6 months depending on complexity. I provide detailed timelines during our initial consultation.</p>
-          </div>
-          <div>
-            <h3 className="font-medium text-foreground mb-2">Do you work with international clients?</h3>
-            <p className="text-sm text-muted-foreground">Absolutely! I work with clients worldwide and am flexible with different time zones and communication preferences.</p>
-          </div>
-          <div>
-            <h3 className="font-medium text-foreground mb-2">What's included in your development service?</h3>
-            <p className="text-sm text-muted-foreground">Full-stack development, code reviews, testing, deployment assistance, and 30 days of post-launch support.</p>
-          </div>
-          <div>
-            <h3 className="font-medium text-foreground mb-2">How do you handle project communication?</h3>
-            <p className="text-sm text-muted-foreground">Regular updates via your preferred channel (email, Slack, or video calls) with weekly progress reports.</p>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

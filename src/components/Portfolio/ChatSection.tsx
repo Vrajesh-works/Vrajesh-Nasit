@@ -71,6 +71,16 @@ const ChatSection = () => {
     }
   };
 
+  const suggestionChips = [
+    "Project",
+    "Experience", 
+    "Tell me about yourself"
+  ];
+
+  const handleSuggestionClick = (suggestion: string) => {
+    setInputValue(suggestion);
+  };
+
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
@@ -82,7 +92,7 @@ const ChatSection = () => {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-4">
+      <div className="flex-1 overflow-y-auto p-6 pb-32 space-y-4">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -126,32 +136,51 @@ const ChatSection = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input */}
-      <div className="p-6 border-t border-border bg-gradient-subtle">
-        <div className="flex gap-3">
-          <input
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder="Ask me anything about John's experience..."
-            className="portfolio-input flex-1"
-            disabled={isTyping}
-            aria-label="Type your message to John's AI assistant"
-            aria-describedby="chat-input-help"
-          />
-          <button
-            onClick={handleSendMessage}
-            disabled={!inputValue.trim() || isTyping}
-            className="portfolio-button primary px-4"
-            aria-label="Send message"
-          >
-            <Send className="w-4 h-4" />
-          </button>
+      {/* Fixed Input at Bottom */}
+      <div className="fixed bottom-0 left-sidebar right-0 bg-background/95 backdrop-blur-sm border-t border-border">
+        {/* Suggestion Chips */}
+        <div className="p-4 pb-2">
+          <div className="flex gap-2 flex-wrap">
+            {suggestionChips.map((chip) => (
+              <button
+                key={chip}
+                onClick={() => handleSuggestionClick(chip)}
+                className="px-3 py-1.5 bg-muted hover:bg-muted/80 text-foreground text-sm rounded-full transition-colors hover-scale"
+                disabled={isTyping}
+              >
+                {chip}
+              </button>
+            ))}
+          </div>
         </div>
-        <p id="chat-input-help" className="text-xs text-muted-foreground mt-2 opacity-75">
-          Press Enter to send, Shift+Enter for new line
-        </p>
+        
+        {/* Input */}
+        <div className="p-4 pt-2">
+          <div className="flex gap-3">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyPress={handleKeyPress}
+              placeholder="Ask me anything about John's experience..."
+              className="portfolio-input flex-1"
+              disabled={isTyping}
+              aria-label="Type your message to John's AI assistant"
+              aria-describedby="chat-input-help"
+            />
+            <button
+              onClick={handleSendMessage}
+              disabled={!inputValue.trim() || isTyping}
+              className="portfolio-button primary px-4"
+              aria-label="Send message"
+            >
+              <Send className="w-4 h-4" />
+            </button>
+          </div>
+          <p id="chat-input-help" className="text-xs text-muted-foreground mt-2 opacity-75">
+            Press Enter to send, Shift+Enter for new line
+          </p>
+        </div>
       </div>
     </div>
   );

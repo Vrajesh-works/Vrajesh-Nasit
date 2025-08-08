@@ -220,46 +220,6 @@ const ReviewSection = () => {
         </div>
       </div>
 
-      {/* All Reviews Grid */}
-      <div className="mb-8">
-        <h2 className="text-xl font-semibold text-foreground mb-6">All Client Feedback</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {reviews.map((review) => (
-            <div key={review.id} className="portfolio-card">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold">
-                  {review.avatar}
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-foreground">{review.name}</h3>
-                  <p className="text-sm text-muted-foreground">{review.role} at {review.company}</p>
-                  <div className="flex items-center gap-1 mt-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-3 h-3 ${
-                          i < review.rating
-                            ? 'text-yellow-500 fill-current'
-                            : 'text-muted-foreground'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-              
-              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                "{review.review}"
-              </p>
-              
-              <div className="text-xs text-muted-foreground">
-                <div>Project: {review.project}</div>
-                <div>{review.date}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Call to Action */}
       <div className="text-center p-8 bg-gradient-card rounded-2xl border border-border">
