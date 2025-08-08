@@ -84,15 +84,15 @@ const ChatSection = () => {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="p-6 border-b border-border bg-gradient-hero">
-        <h1 className="text-2xl font-bold text-foreground animate-fade-in">Chat with John's AI</h1>
-        <p className="text-muted-foreground mt-1 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+      <div className="p-4 md:p-6 border-b border-border bg-gradient-hero">
+        <h1 className="text-xl md:text-2xl font-bold text-foreground animate-fade-in">Chat with John's AI</h1>
+        <p className="text-sm md:text-base text-muted-foreground mt-1 animate-fade-in" style={{ animationDelay: '0.1s' }}>
           Ask anything about my experience, projects, or skills
         </p>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-6 pb-32 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 md:p-6 pb-32 space-y-3 md:space-y-4">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -137,15 +137,15 @@ const ChatSection = () => {
       </div>
 
       {/* Fixed Input at Bottom */}
-      <div className="fixed bottom-0 left-sidebar right-0 bg-background/95 backdrop-blur-sm border-t border-border">
+      <div className="fixed bottom-0 left-0 md:left-sidebar right-0 bg-background/95 backdrop-blur-sm border-t border-border">
         {/* Suggestion Chips */}
-        <div className="p-4 pb-2">
+        <div className="p-3 md:p-4 pb-2">
           <div className="flex gap-2 flex-wrap">
             {suggestionChips.map((chip) => (
               <button
                 key={chip}
                 onClick={() => handleSuggestionClick(chip)}
-                className="px-3 py-1.5 bg-muted hover:bg-muted/80 text-foreground text-sm rounded-full transition-colors hover-scale"
+                className="px-2 md:px-3 py-1 md:py-1.5 bg-muted hover:bg-muted/80 text-foreground text-xs md:text-sm rounded-full transition-colors hover-scale"
                 disabled={isTyping}
               >
                 {chip}
@@ -155,15 +155,15 @@ const ChatSection = () => {
         </div>
         
         {/* Input */}
-        <div className="p-4 pt-2">
-          <div className="flex gap-3">
+        <div className="p-3 md:p-4 pt-2">
+          <div className="flex gap-2 md:gap-3">
             <input
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Ask me anything about John's experience..."
-              className="portfolio-input flex-1"
+              className="portfolio-input flex-1 text-sm md:text-base"
               disabled={isTyping}
               aria-label="Type your message to John's AI assistant"
               aria-describedby="chat-input-help"
@@ -171,7 +171,7 @@ const ChatSection = () => {
             <button
               onClick={handleSendMessage}
               disabled={!inputValue.trim() || isTyping}
-              className="portfolio-button primary px-4"
+              className="portfolio-button primary px-3 md:px-4"
               aria-label="Send message"
             >
               <Send className="w-4 h-4" />

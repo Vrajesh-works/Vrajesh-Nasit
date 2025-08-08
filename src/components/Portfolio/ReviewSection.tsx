@@ -91,55 +91,55 @@ const ReviewSection = () => {
   const averageRating = reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length;
 
   return (
-    <div className="p-6">
+    <div className="p-4 md:p-6">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-foreground mb-2">Client Reviews</h1>
-        <p className="text-muted-foreground text-lg">
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Client Reviews</h1>
+        <p className="text-muted-foreground text-base md:text-lg">
           What clients say about working with me on their projects
         </p>
       </div>
 
       {/* Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-6 md:mb-8">
         <div className="portfolio-card text-center">
-          <div className="text-3xl font-bold text-primary mb-2">{reviews.length}+</div>
-          <div className="text-sm text-muted-foreground">Happy Clients</div>
+          <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">{reviews.length}+</div>
+          <div className="text-xs md:text-sm text-muted-foreground">Happy Clients</div>
         </div>
         <div className="portfolio-card text-center">
-          <div className="flex items-center justify-center gap-1 mb-2">
-            <span className="text-3xl font-bold text-primary">{averageRating.toFixed(1)}</span>
-            <Star className="w-6 h-6 text-yellow-500 fill-current" />
+          <div className="flex items-center justify-center gap-1 mb-1 md:mb-2">
+            <span className="text-2xl md:text-3xl font-bold text-primary">{averageRating.toFixed(1)}</span>
+            <Star className="w-4 h-4 md:w-6 md:h-6 text-yellow-500 fill-current" />
           </div>
-          <div className="text-sm text-muted-foreground">Average Rating</div>
+          <div className="text-xs md:text-sm text-muted-foreground">Average Rating</div>
         </div>
         <div className="portfolio-card text-center">
-          <div className="text-3xl font-bold text-primary mb-2">100%</div>
-          <div className="text-sm text-muted-foreground">Project Success</div>
+          <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">100%</div>
+          <div className="text-xs md:text-sm text-muted-foreground">Project Success</div>
         </div>
         <div className="portfolio-card text-center">
-          <div className="text-3xl font-bold text-primary mb-2">98%</div>
-          <div className="text-sm text-muted-foreground">Client Retention</div>
+          <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">98%</div>
+          <div className="text-xs md:text-sm text-muted-foreground">Client Retention</div>
         </div>
       </div>
 
       {/* Featured Review Carousel */}
-      <div className="portfolio-card mb-8">
+      <div className="portfolio-card mb-6 md:mb-8">
         <div className="relative">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold text-foreground">Featured Reviews</h2>
-            <div className="flex gap-2">
+          <div className="flex justify-between items-center mb-4 md:mb-6">
+            <h2 className="text-lg md:text-xl font-semibold text-foreground">Featured Reviews</h2>
+            <div className="flex gap-1 md:gap-2">
               <button
                 onClick={prevReview}
-                className="w-10 h-10 bg-muted hover:bg-muted/80 rounded-lg flex items-center justify-center transition-colors"
+                className="w-8 h-8 md:w-10 md:h-10 bg-muted hover:bg-muted/80 rounded-lg flex items-center justify-center transition-colors"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
               </button>
               <button
                 onClick={nextReview}
-                className="w-10 h-10 bg-muted hover:bg-muted/80 rounded-lg flex items-center justify-center transition-colors"
+                className="w-8 h-8 md:w-10 md:h-10 bg-muted hover:bg-muted/80 rounded-lg flex items-center justify-center transition-colors"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
               </button>
             </div>
           </div>
@@ -151,19 +151,19 @@ const ReviewSection = () => {
             >
               {reviews.map((review) => (
                 <div key={review.id} className="w-full flex-shrink-0">
-                  <div className="flex flex-col lg:flex-row gap-6">
+                  <div className="flex flex-col lg:flex-row gap-4 md:gap-6">
                     {/* Review Content */}
                     <div className="flex-1">
-                      <Quote className="w-8 h-8 text-primary mb-4" />
-                      <p className="text-lg text-foreground leading-relaxed mb-6 italic">
+                      <Quote className="w-6 h-6 md:w-8 md:h-8 text-primary mb-3 md:mb-4" />
+                      <p className="text-base md:text-lg text-foreground leading-relaxed mb-4 md:mb-6 italic">
                         "{review.review}"
                       </p>
                       
-                      <div className="flex items-center gap-1 mb-4">
+                      <div className="flex items-center gap-1 mb-3 md:mb-4">
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
-                            className={`w-4 h-4 ${
+                            className={`w-3 h-3 md:w-4 md:h-4 ${
                               i < review.rating
                                 ? 'text-yellow-500 fill-current'
                                 : 'text-muted-foreground'
@@ -172,7 +172,7 @@ const ReviewSection = () => {
                         ))}
                       </div>
                       
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-xs md:text-sm text-muted-foreground">
                         <div className="font-medium text-foreground">Project: {review.project}</div>
                         <div>{review.date}</div>
                       </div>
@@ -180,17 +180,17 @@ const ReviewSection = () => {
 
                     {/* Reviewer Info */}
                     <div className="lg:w-80">
-                      <div className="flex items-start gap-4">
-                        <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground text-lg font-bold">
+                      <div className="flex items-start gap-3 md:gap-4">
+                        <div className="w-12 h-12 md:w-16 md:h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground text-sm md:text-lg font-bold">
                           {review.avatar}
                         </div>
                         <div>
-                          <h3 className="font-semibold text-foreground">{review.name}</h3>
-                          <p className="text-sm text-muted-foreground">{review.role}</p>
+                          <h3 className="text-sm md:text-base font-semibold text-foreground">{review.name}</h3>
+                          <p className="text-xs md:text-sm text-muted-foreground">{review.role}</p>
                           <div className="flex items-center gap-1 mt-1">
                             <a
                               href={review.companyUrl}
-                              className="text-primary hover:text-primary-glow text-sm font-medium transition-colors"
+                              className="text-primary hover:text-primary-glow text-xs md:text-sm font-medium transition-colors"
                             >
                               {review.company}
                             </a>
@@ -206,7 +206,7 @@ const ReviewSection = () => {
           </div>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="flex justify-center gap-2 mt-4 md:mt-6">
             {reviews.map((_, index) => (
               <button
                 key={index}
@@ -222,16 +222,16 @@ const ReviewSection = () => {
 
 
       {/* Call to Action */}
-      <div className="text-center p-8 bg-gradient-card rounded-2xl border border-border">
-        <h2 className="text-2xl font-bold text-foreground mb-3">Ready to Start Your Project?</h2>
-        <p className="text-muted-foreground mb-6">
+      <div className="text-center p-6 md:p-8 bg-gradient-card rounded-2xl border border-border">
+        <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">Ready to Start Your Project?</h2>
+        <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
           Join these satisfied clients and let's build something amazing together.
         </p>
-        <div className="flex gap-3 justify-center">
-          <button className="portfolio-button primary">
+        <div className="flex flex-col sm:flex-row gap-2 md:gap-3 justify-center">
+          <button className="portfolio-button primary text-sm md:text-base">
             <span>Get Started Today</span>
           </button>
-          <button className="portfolio-button secondary">
+          <button className="portfolio-button secondary text-sm md:text-base">
             <span>View My Process</span>
           </button>
         </div>

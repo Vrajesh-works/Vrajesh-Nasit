@@ -9,6 +9,7 @@ import ReviewSection from './ReviewSection';
 
 const PortfolioLayout = () => {
   const [activeSection, setActiveSection] = useState('chat');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const renderSection = () => {
     switch (activeSection) {
@@ -34,11 +35,16 @@ const PortfolioLayout = () => {
       {/* Sidebar */}
       <Sidebar 
         activeSection={activeSection} 
-        onSectionChange={setActiveSection} 
+        onSectionChange={(section) => {
+          setActiveSection(section);
+          setIsMobileMenuOpen(false);
+        }}
+        isMobileMenuOpen={isMobileMenuOpen}
+        onMobileMenuToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       />
       
       {/* Main Content */}
-      <main className="flex-1 ml-sidebar overflow-y-auto">
+      <main className="flex-1 md:ml-sidebar overflow-y-auto">
         <div className="min-h-full">
           {renderSection()}
         </div>

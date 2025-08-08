@@ -56,19 +56,19 @@ const ContactSection = () => {
   ];
 
   return (
-    <div className="p-6">
+    <div className="p-4 md:p-6">
       {/* Header */}
-      <div className="mb-8 animate-fade-in">
-        <h1 className="text-3xl font-bold text-foreground mb-2">Get In Touch</h1>
-        <p className="text-muted-foreground text-lg">
+      <div className="mb-6 md:mb-8 animate-fade-in">
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Get In Touch</h1>
+        <p className="text-muted-foreground text-base md:text-lg">
           Ready to bring your next project to life? Let's discuss how we can work together.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
         {/* Contact Form */}
         <div className="portfolio-card animate-fade-in">
-          <h2 className="text-xl font-semibold text-foreground mb-6">Send a Message</h2>
+          <h2 className="text-lg md:text-xl font-semibold text-foreground mb-4 md:mb-6">Send a Message</h2>
           
           {isSubmitted && (
             <div className="mb-6 p-4 bg-success/10 border border-success/20 rounded-lg flex items-center gap-3 animate-fade-in">
@@ -80,10 +80,10 @@ const ContactSection = () => {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4" noValidate>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="name" className="block text-xs md:text-sm font-medium text-foreground mb-2">
                   Name <span className="text-destructive">*</span>
                 </label>
                 <input
@@ -93,7 +93,7 @@ const ContactSection = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="portfolio-input"
+                  className="portfolio-input text-sm md:text-base"
                   placeholder="Your full name"
                   aria-describedby="name-error"
                   autoComplete="given-name"
@@ -101,7 +101,7 @@ const ContactSection = () => {
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="email" className="block text-xs md:text-sm font-medium text-foreground mb-2">
                   Email <span className="text-destructive">*</span>
                 </label>
                 <input
@@ -111,7 +111,7 @@ const ContactSection = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="portfolio-input"
+                  className="portfolio-input text-sm md:text-base"
                   placeholder="your.email@example.com"
                   aria-describedby="email-error"
                   autoComplete="email"
@@ -120,7 +120,7 @@ const ContactSection = () => {
             </div>
 
             <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
+              <label htmlFor="subject" className="block text-xs md:text-sm font-medium text-foreground mb-2">
                 Subject <span className="text-destructive">*</span>
               </label>
               <input
@@ -130,14 +130,14 @@ const ContactSection = () => {
                 value={formData.subject}
                 onChange={handleInputChange}
                 required
-                className="portfolio-input"
+                className="portfolio-input text-sm md:text-base"
                 placeholder="What's this about?"
                 aria-describedby="subject-error"
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+              <label htmlFor="message" className="block text-xs md:text-sm font-medium text-foreground mb-2">
                 Message <span className="text-destructive">*</span>
               </label>
               <textarea
@@ -147,7 +147,7 @@ const ContactSection = () => {
                 onChange={handleInputChange}
                 required
                 rows={6}
-                className="portfolio-input resize-none"
+                className="portfolio-input resize-none text-sm md:text-base"
                 placeholder="Tell me about your project, timeline, and any specific requirements..."
                 aria-describedby="message-error"
               />
@@ -156,7 +156,7 @@ const ContactSection = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="portfolio-button primary w-full"
+              className="portfolio-button primary w-full text-sm md:text-base"
               aria-describedby="submit-status"
             >
               {isSubmitting ? (
@@ -178,23 +178,23 @@ const ContactSection = () => {
         </div>
 
         {/* Contact Info & Availability */}
-        <div className="space-y-6">
+        <div className="space-y-4 md:space-y-6">
           {/* Contact Information */}
           <div className="portfolio-card animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            <h2 className="text-xl font-semibold text-foreground mb-6">Contact Information</h2>
-            <div className="space-y-4">
+            <h2 className="text-lg md:text-xl font-semibold text-foreground mb-4 md:mb-6">Contact Information</h2>
+            <div className="space-y-3 md:space-y-4">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
                 return (
-                  <div key={index} className="flex items-center gap-4 hover-lift p-2 rounded-lg">
-                    <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center shadow-md">
-                      <Icon className="w-5 h-5 text-primary-foreground" />
+                  <div key={index} className="flex items-center gap-3 md:gap-4 hover-lift p-2 rounded-lg">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-primary rounded-lg flex items-center justify-center shadow-md">
+                      <Icon className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" />
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground font-medium">{info.label}</p>
+                      <p className="text-xs md:text-sm text-muted-foreground font-medium">{info.label}</p>
                       <a
                         href={info.href}
-                        className="text-foreground font-medium hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-focus-ring rounded"
+                        className="text-sm md:text-base text-foreground font-medium hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-focus-ring rounded"
                         aria-label={`${info.label}: ${info.value}`}
                       >
                         {info.value}
@@ -208,14 +208,14 @@ const ContactSection = () => {
 
           {/* Availability */}
           <div className="portfolio-card">
-            <h2 className="text-xl font-semibold text-foreground mb-4">Current Availability</h2>
-            <div className="space-y-4">
+            <h2 className="text-lg md:text-xl font-semibold text-foreground mb-3 md:mb-4">Current Availability</h2>
+            <div className="space-y-3 md:space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 bg-success rounded-full animate-pulse"></div>
-                <span className="text-success font-medium">Available for new projects</span>
+                <span className="text-success font-medium text-sm md:text-base">Available for new projects</span>
               </div>
               
-              <div className="text-sm text-muted-foreground space-y-2">
+              <div className="text-xs md:text-sm text-muted-foreground space-y-1 md:space-y-2">
                 <p>• Response time: Within 24 hours</p>
                 <p>• Preferred project duration: 2-6 months</p>
                 <p>• Remote work: Available worldwide</p>
@@ -226,16 +226,16 @@ const ContactSection = () => {
 
           {/* Quick Links */}
           <div className="portfolio-card">
-            <div className="space-y-3">
+            <div className="space-y-2 md:space-y-3">
               <a
                 href="#"
-                className="portfolio-button secondary w-full text-center"
+                className="portfolio-button secondary w-full text-center text-sm md:text-base"
               >
                 Schedule a Call
               </a>
               <a
                 href="#"
-                className="portfolio-button ghost w-full text-center"
+                className="portfolio-button ghost w-full text-center text-sm md:text-base"
               >
                 Download Resume
               </a>
