@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User } from 'lucide-react';
+import { ArrowUp, Bot, User } from 'lucide-react';
 
 interface Message {
   id: string;
@@ -20,6 +20,7 @@ const ChatSection = () => {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -70,6 +71,23 @@ const ChatSection = () => {
       handleSendMessage();
     }
   };
+
+  const autoResizeTextarea = () => {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = Math.min(textarea.scrollHeight, 128) + 'px'; // max height of 128px (max-h-32)
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInputValue(e.target.value);
+    autoResizeTextarea();
+  };
+
+  useEffect(() => {
+    autoResizeTextarea();
+  }, [inputValue]);
 
   const suggestionChips = [
     "Project",
@@ -142,11 +160,12 @@ const ChatSection = () => {
         <div className="p-3 md:p-4">
           <div className="flex gap-2 md:gap-3">
             <textarea
+              ref={textareaRef}
               value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={handleInputChange}
               onKeyDown={handleKeyPress}
               placeholder="Ask me anything about John's experience..."
-              className="portfolio-input flex-1 text-sm md:text-base resize-none min-h-[44px] max-h-32"
+              className="portfolio-input flex-1 text-sm md:text-base resize-none min-h-[44px] max-h-32 overflow-y-auto"
               disabled={isTyping}
               aria-label="Type your message to John's AI assistant"
               aria-describedby="chat-input-help"
@@ -155,10 +174,10 @@ const ChatSection = () => {
             <button
               onClick={handleSendMessage}
               disabled={!inputValue.trim() || isTyping}
-              className="portfolio-button primary px-3 md:px-4"
+              className="portfolio-button primary px-3 md:px-4 rounded-full flex-shrink-0"
               aria-label="Send message"
             >
-              <Send className="w-4 h-4" />
+              <ArrowUp className="w-4 h-4" />
             </button>
           </div>
           <p id="chat-input-help" className="text-xs text-muted-foreground mt-2 opacity-75">
