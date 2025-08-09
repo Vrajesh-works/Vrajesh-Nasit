@@ -224,23 +224,6 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="portfolio-card">
-            <div className="space-y-2 md:space-y-3">
-              <a
-                href="#"
-                className="portfolio-button secondary w-full text-center text-sm md:text-base"
-              >
-                Schedule a Call
-              </a>
-              <a
-                href="#"
-                className="portfolio-button ghost w-full text-center text-sm md:text-base"
-              >
-                Download Resume
-              </a>
-            </div>
-          </div>
         </div>
       </div>
 

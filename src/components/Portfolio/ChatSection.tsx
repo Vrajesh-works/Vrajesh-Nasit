@@ -138,24 +138,8 @@ const ChatSection = () => {
 
       {/* Fixed Input at Bottom */}
       <div className="fixed bottom-0 left-0 md:left-sidebar right-0 bg-background/95 backdrop-blur-sm border-t border-border">
-        {/* Suggestion Chips */}
-        <div className="p-3 md:p-4 pb-2">
-          <div className="flex gap-2 flex-wrap">
-            {suggestionChips.map((chip) => (
-              <button
-                key={chip}
-                onClick={() => handleSuggestionClick(chip)}
-                className="px-2 md:px-3 py-1 md:py-1.5 bg-muted hover:bg-muted/80 text-foreground text-xs md:text-sm rounded-full transition-colors hover-scale"
-                disabled={isTyping}
-              >
-                {chip}
-              </button>
-            ))}
-          </div>
-        </div>
-        
         {/* Input */}
-        <div className="p-3 md:p-4 pt-2">
+        <div className="p-3 md:p-4">
           <div className="flex gap-2 md:gap-3">
             <input
               type="text"

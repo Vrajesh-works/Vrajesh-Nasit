@@ -103,12 +103,27 @@ const FunSection = () => {
         </p>
       </div>
 
-      {/* Interactive Mini Game */}
-      <div className="portfolio-card mb-6 md:mb-8 bg-gradient-to-r from-primary/5 to-accent/5 border-primary/20 animate-fade-in">
-        <div className="text-center">
-          <div className="text-xl md:text-2xl mb-2">🎯 Fun Interaction!</div>
-          <p className="text-muted-foreground text-sm md:text-base mb-3 md:mb-4">Click the achievements below to earn points! Current score: <span className="text-primary font-bold">{gameScore}</span></p>
+      {/* Images Gallery */}
+      <div className="portfolio-card mb-6 md:mb-8 animate-fade-in">
+        <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-4 md:mb-6 flex items-center gap-2">
+          My Images 📸
+          <span className="text-xs text-muted-foreground">(Personal moments)</span>
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+          {/* Placeholder for images - can be populated later */}
+          {Array.from({ length: 8 }).map((_, index) => (
+            <div
+              key={index}
+              className="aspect-square bg-gradient-to-br from-muted to-muted/50 rounded-lg flex items-center justify-center hover:scale-105 transition-transform duration-300 cursor-pointer animate-fade-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <Camera className="w-6 h-6 md:w-8 md:h-8 text-muted-foreground/50" />
+            </div>
+          ))}
         </div>
+        <p className="text-xs md:text-sm text-muted-foreground mt-3 md:mt-4 text-center">
+          Click to upload your personal images and memories
+        </p>
       </div>
 
       {/* Hobbies Grid with Enhanced Animations */}
@@ -159,71 +174,6 @@ const FunSection = () => {
         })}
       </div>
 
-      {/* Interactive Achievements */}
-      <div className="portfolio-card mb-6 md:mb-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-        <h2 className="text-lg md:text-xl font-semibold text-foreground mb-4 md:mb-6 flex items-center gap-2 flex-wrap">
-          Recent Achievements 🏆
-          {gameScore > 5 && <span className="text-xs bg-primary text-primary-foreground px-2 py-1 rounded-full animate-bounce">Wow! 🎉</span>}
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-          {achievements.map((achievement, index) => {
-            const Icon = achievement.icon;
-            return (
-              <div 
-                key={index} 
-                className="flex items-center gap-2 md:gap-3 p-2 md:p-3 bg-muted/50 rounded-lg cursor-pointer transition-all duration-300 hover:bg-muted hover:scale-105 hover:shadow-md"
-                onClick={handleAchievementClick}
-              >
-                <div className="text-xl md:text-2xl animate-bounce" style={{ animationDelay: `${index * 0.2}s` }}>
-                  {achievement.emoji}
-                </div>
-                <Icon className="w-4 h-4 md:w-5 md:h-5 text-primary animate-pulse" />
-                <span className="text-xs md:text-sm text-foreground">{achievement.text}</span>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Rotating Fun Facts */}
-      <div className="portfolio-card mb-8 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-        <h2 className="text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
-          Random Fun Facts 🎲
-          <span className="text-xs text-muted-foreground">(Auto-rotating)</span>
-        </h2>
-        <div className="bg-gradient-to-r from-primary/10 to-accent/10 p-6 rounded-lg text-center">
-          <div key={currentFactIndex} className="animate-fade-in">
-            <p className="text-lg text-foreground font-medium">
-              {quirkyFacts[currentFactIndex]}
-            </p>
-          </div>
-          <div className="flex justify-center gap-1 mt-4">
-            {quirkyFacts.map((_, index) => (
-              <div
-                key={index}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentFactIndex ? 'bg-primary scale-125' : 'bg-muted'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-        
-        {/* All facts grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-6">
-          {quirkyFacts.map((fact, index) => (
-            <div 
-              key={index} 
-              className={`flex items-start gap-3 p-3 rounded-lg transition-all duration-300 hover:bg-muted/50 ${
-                index === currentFactIndex ? 'bg-primary/10 border border-primary/20' : ''
-              }`}
-            >
-              <span className="text-primary text-lg mt-0.5 animate-pulse">•</span>
-              <span className="text-sm text-muted-foreground">{fact}</span>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Enhanced Personality Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in" style={{ animationDelay: '0.5s' }}>

@@ -44,7 +44,7 @@ const Sidebar = ({ activeSection, onSectionChange, isMobileMenuOpen, onMobileMen
       {/* Mobile Menu Button */}
       <button
         onClick={onMobileMenuToggle}
-        className="fixed top-4 left-4 z-50 md:hidden bg-card border border-border rounded-lg p-2 shadow-md"
+        className="fixed top-4 right-4 z-50 md:hidden bg-card border border-border rounded-lg p-2 shadow-md"
         aria-label="Toggle navigation menu"
       >
         {isMobileMenuOpen ? (
