@@ -107,53 +107,6 @@ const FunSection = () => {
       {/* Fun Moments Carousel */}
       <FunMomentsCarousel />
 
-      {/* Hobbies Grid with Enhanced Animations */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
-        {hobbies.map((hobby, index) => {
-          const Icon = hobby.icon;
-          const isActive = activeHobby === hobby.id;
-          const isAnimating = animatingCards.includes(hobby.id);
-          
-          return (
-            <div
-              key={hobby.id}
-              className={`portfolio-card cursor-pointer transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 animate-fade-in ${
-                isActive ? 'ring-2 ring-primary shadow-glow scale-105' : ''
-              } ${isAnimating ? 'animate-pulse' : ''}`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-              onClick={() => handleHobbyClick(hobby.id)}
-            >
-              <div className="flex items-start gap-3 md:gap-4">
-                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-lg ${hobby.bgColor} ${hobby.hoverColor} flex items-center justify-center transition-all duration-300 hover:scale-110`}>
-                  <Icon className={`w-5 h-5 md:w-6 md:h-6 ${hobby.color} transition-transform duration-300 ${isActive ? 'scale-125' : ''}`} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-base md:text-lg font-semibold text-foreground mb-1 flex items-center gap-2">
-                    {hobby.title}
-                    {isActive && <Zap className="w-3 h-3 md:w-4 md:h-4 text-primary animate-pulse" />}
-                  </h3>
-                  <p className="text-xs md:text-sm text-muted-foreground mb-2">{hobby.description}</p>
-                  <div className="text-xs text-primary font-medium flex items-center gap-1">
-                    <Star className="w-3 h-3" />
-                    {hobby.stats}
-                  </div>
-                </div>
-              </div>
-              
-              {isActive && (
-                <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-border animate-fade-in">
-                  <div className="bg-gradient-primary/10 p-3 rounded-lg">
-                    <p className="text-xs md:text-sm text-muted-foreground">
-                      ✨ This hobby takes up about 5-10 hours of my week and keeps me creatively energized! 
-                      It's where I find inspiration for my development work.
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
 
 
       {/* Enhanced Personality Section */}

@@ -100,28 +100,6 @@ const ReviewSection = () => {
         </p>
       </div>
 
-      {/* Stats Overview */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-6 md:mb-8">
-        <div className="portfolio-card text-center">
-          <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">{reviews.length}+</div>
-          <div className="text-xs md:text-sm text-muted-foreground">Happy Clients</div>
-        </div>
-        <div className="portfolio-card text-center">
-          <div className="flex items-center justify-center gap-1 mb-1 md:mb-2">
-            <span className="text-2xl md:text-3xl font-bold text-primary">{averageRating.toFixed(1)}</span>
-            <Star className="w-4 h-4 md:w-6 md:h-6 text-yellow-500 fill-current" />
-          </div>
-          <div className="text-xs md:text-sm text-muted-foreground">Average Rating</div>
-        </div>
-        <div className="portfolio-card text-center">
-          <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">100%</div>
-          <div className="text-xs md:text-sm text-muted-foreground">Project Success</div>
-        </div>
-        <div className="portfolio-card text-center">
-          <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">98%</div>
-          <div className="text-xs md:text-sm text-muted-foreground">Client Retention</div>
-        </div>
-      </div>
 
       {/* Featured Review Carousel */}
       <div className="portfolio-card mb-6 md:mb-8">
