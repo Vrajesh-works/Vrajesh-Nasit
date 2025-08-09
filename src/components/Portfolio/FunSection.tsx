@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Coffee, Music, Camera, Gamepad2, Plane, Book, Trophy, Heart, Sparkles, Zap, Star } from 'lucide-react';
+import { Coffee, Music, Camera, Gamepad2, Plane, Book, Trophy, Heart, Sparkles, Zap, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import useEmblaCarousel from 'embla-carousel-react';
 
 const FunSection = () => {
   const [activeHobby, setActiveHobby] = useState<string | null>(null);
@@ -103,28 +104,8 @@ const FunSection = () => {
         </p>
       </div>
 
-      {/* Images Gallery */}
-      <div className="portfolio-card mb-6 md:mb-8 animate-fade-in">
-        <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-4 md:mb-6 flex items-center gap-2">
-          My Images 📸
-          <span className="text-xs text-muted-foreground">(Personal moments)</span>
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-          {/* Placeholder for images - can be populated later */}
-          {Array.from({ length: 8 }).map((_, index) => (
-            <div
-              key={index}
-              className="aspect-square bg-gradient-to-br from-muted to-muted/50 rounded-lg flex items-center justify-center hover:scale-105 transition-transform duration-300 cursor-pointer animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <Camera className="w-6 h-6 md:w-8 md:h-8 text-muted-foreground/50" />
-            </div>
-          ))}
-        </div>
-        <p className="text-xs md:text-sm text-muted-foreground mt-3 md:mt-4 text-center">
-          Click to upload your personal images and memories
-        </p>
-      </div>
+      {/* Fun Moments Carousel */}
+      <FunMomentsCarousel />
 
       {/* Hobbies Grid with Enhanced Animations */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
@@ -251,6 +232,174 @@ const FunSection = () => {
           </button>
         </div>
       </div>
+    </div>
+  );
+};
+
+// Fun Moments Carousel Component
+const FunMomentsCarousel = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true, 
+    skipSnaps: false,
+    dragFree: true 
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const funMoments = [
+    {
+      id: 1,
+      title: "Coffee Shop Coding ☕",
+      description: "My favorite spot for weekend coding sessions",
+      image: "https://images.unsplash.com/photo-1521747116042-5a810fda9664?w=400&h=300&fit=crop&crop=center",
+      emoji: "☕"
+    },
+    {
+      id: 2,
+      title: "Team Building Day 🎯",
+      description: "Annual hackathon with the crew",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&crop=center",
+      emoji: "🎯"
+    },
+    {
+      id: 3,
+      title: "Mountain Hiking 🏔️",
+      description: "Finding inspiration in nature",
+      image: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=300&fit=crop&crop=center",
+      emoji: "🏔️"
+    },
+    {
+      id: 4,
+      title: "Music Studio Time 🎵",
+      description: "Working on my latest electronic track",
+      image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop&crop=center",
+      emoji: "🎵"
+    },
+    {
+      id: 5,
+      title: "Street Photography 📸",
+      description: "Capturing urban life in the city",
+      image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=300&fit=crop&crop=center",
+      emoji: "📸"
+    },
+    {
+      id: 6,
+      title: "Game Dev Session 🎮",
+      description: "Late night coding on my indie game",
+      image: "https://images.unsplash.com/photo-1556438064-2d7646166914?w=400&h=300&fit=crop&crop=center",
+      emoji: "🎮"
+    },
+    {
+      id: 7,
+      title: "Conference Speaking 🎤",
+      description: "Sharing knowledge at TechConf 2024",
+      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop&crop=center",
+      emoji: "🎤"
+    },
+    {
+      id: 8,
+      title: "Workspace Setup 💻",
+      description: "My zen coding environment",
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=300&fit=crop&crop=center",
+      emoji: "💻"
+    }
+  ];
+
+  const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
+  const scrollNext = () => emblaApi && emblaApi.scrollNext();
+
+  const onSelect = () => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  };
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+  }, [emblaApi]);
+
+  return (
+    <div className="portfolio-card mb-6 md:mb-8 animate-fade-in">
+      <div className="flex items-center justify-between mb-4 md:mb-6">
+        <h2 className="text-xl md:text-2xl font-semibold text-foreground flex items-center gap-2">
+          Fun Moments 📸
+          <span className="text-xs text-muted-foreground">(Life highlights)</span>
+        </h2>
+        <div className="flex gap-2">
+          <button
+            onClick={scrollPrev}
+            className="p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors hover:scale-110 transform duration-200"
+            aria-label="Previous image"
+          >
+            <ChevronLeft className="w-4 h-4 text-foreground" />
+          </button>
+          <button
+            onClick={scrollNext}
+            className="p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors hover:scale-110 transform duration-200"
+            aria-label="Next image"
+          >
+            <ChevronRight className="w-4 h-4 text-foreground" />
+          </button>
+        </div>
+      </div>
+
+      <div className="embla relative" ref={emblaRef}>
+        <div className="embla__container flex">
+          {funMoments.map((moment, index) => (
+            <div key={moment.id} className="embla__slide flex-[0_0_85%] md:flex-[0_0_50%] lg:flex-[0_0_33%] pl-4">
+              <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-muted to-muted/50 hover:shadow-glow transition-all duration-300 hover:scale-105">
+                <div className="aspect-[4/3] relative overflow-hidden">
+                  <img
+                    src={moment.image}
+                    alt={moment.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Emoji overlay */}
+                  <div className="absolute top-3 right-3 text-2xl bg-background/80 backdrop-blur-sm rounded-full w-10 h-10 flex items-center justify-center transform group-hover:scale-125 transition-transform duration-300">
+                    {moment.emoji}
+                  </div>
+                </div>
+                
+                <div className="p-4">
+                  <h3 className="font-semibold text-foreground text-sm md:text-base mb-1 group-hover:text-primary transition-colors">
+                    {moment.title}
+                  </h3>
+                  <p className="text-xs md:text-sm text-muted-foreground line-clamp-2">
+                    {moment.description}
+                  </p>
+                </div>
+
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-gradient-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Dots indicator */}
+      <div className="flex justify-center gap-2 mt-4 md:mt-6">
+        {funMoments.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => emblaApi && emblaApi.scrollTo(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 hover:scale-125 ${
+              index === selectedIndex 
+                ? 'bg-primary scale-125' 
+                : 'bg-muted hover:bg-muted-foreground/50'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      <p className="text-xs md:text-sm text-muted-foreground mt-3 md:mt-4 text-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
+        ✨ Swipe or use arrows to explore more moments from my journey
+      </p>
     </div>
   );
 };
