@@ -141,16 +141,16 @@ const ChatSection = () => {
         {/* Input */}
         <div className="p-3 md:p-4">
           <div className="flex gap-2 md:gap-3">
-            <input
-              type="text"
+            <textarea
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={handleKeyPress}
+              onKeyDown={handleKeyPress}
               placeholder="Ask me anything about John's experience..."
-              className="portfolio-input flex-1 text-sm md:text-base"
+              className="portfolio-input flex-1 text-sm md:text-base resize-none min-h-[44px] max-h-32"
               disabled={isTyping}
               aria-label="Type your message to John's AI assistant"
               aria-describedby="chat-input-help"
+              rows={1}
             />
             <button
               onClick={handleSendMessage}
