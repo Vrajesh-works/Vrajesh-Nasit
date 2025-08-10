@@ -86,7 +86,11 @@ export default {
 				'gradient-primary': 'var(--gradient-primary)',
 				'gradient-subtle': 'var(--gradient-subtle)',
 				'gradient-card': 'var(--gradient-card)',
-				'gradient-hero': 'var(--gradient-hero)'
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-vibrant': 'var(--gradient-vibrant)',
+				'gradient-sunset': 'var(--gradient-sunset)',
+				'gradient-ocean': 'var(--gradient-ocean)',
+				'gradient-aurora': 'var(--gradient-aurora)'
 			},
 			boxShadow: {
 				'sm': 'var(--shadow-sm)',
@@ -96,7 +100,8 @@ export default {
 				'elegant': 'var(--shadow-elegant)',
 				'glow': 'var(--shadow-glow)',
 				'chat': 'var(--shadow-chat)',
-				'float': 'var(--shadow-float)'
+				'float': 'var(--shadow-float)',
+				'vibrant': 'var(--shadow-vibrant)'
 			},
 			transitionTimingFunction: {
 				'fast': 'cubic-bezier(0.4, 0, 0.2, 1)',
