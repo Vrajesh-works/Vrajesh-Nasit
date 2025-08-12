@@ -23,12 +23,19 @@ const ChatSection = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'end'
+    });
   };
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    // Delay scroll to ensure DOM is updated after state change
+    const timer = setTimeout(() => {
+      scrollToBottom();
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [messages, isTyping]);
 
   const mockResponses = [
     "John is a passionate full-stack developer with 5+ years of experience in React, Node.js, and cloud technologies.",
@@ -110,7 +117,7 @@ const ChatSection = () => {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 md:p-6 pb-32 space-y-3 md:space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 md:p-6 pb-40 space-y-3 md:space-y-4">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -151,7 +158,7 @@ const ChatSection = () => {
             </div>
           </div>
         )}
-        <div ref={messagesEndRef} />
+        <div ref={messagesEndRef} className="h-4" />
       </div>
 
       {/* Fixed Input at Bottom */}
