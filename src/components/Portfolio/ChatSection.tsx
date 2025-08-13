@@ -25,8 +25,8 @@ const ChatSection = () => {
 
   const scrollToBottom = () => {
     if (messagesContainerRef.current) {
-      // Scroll to bottom with extra padding to account for fixed input
-      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight + 200;
+      // Scroll so messages end just above the input box (about 180px from bottom)
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight - messagesContainerRef.current.clientHeight + 20;
     }
   };
 
