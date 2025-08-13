@@ -25,8 +25,7 @@ const ChatSection = () => {
 
   const scrollToBottom = () => {
     if (messagesContainerRef.current) {
-      // Scroll so messages end just above the input box (about 180px from bottom)
-      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight - messagesContainerRef.current.clientHeight + 20;
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
   };
 
@@ -120,11 +119,11 @@ const ChatSection = () => {
         </p>
       </div>
 
-      {/* Messages - ends exactly where input starts */}
+      {/* Messages */}
       <div 
         ref={messagesContainerRef}
         className="flex-1 overflow-y-auto p-4 md:p-6 space-y-3 md:space-y-4"
-        style={{ height: 'calc(100vh - 200px)' }}
+        style={{ paddingBottom: '200px' }}
       >
         {messages.map((message) => (
           <div
