@@ -120,11 +120,11 @@ const ChatSection = () => {
         </p>
       </div>
 
-      {/* Messages */}
+      {/* Messages - ends exactly where input starts */}
       <div 
         ref={messagesContainerRef}
         className="flex-1 overflow-y-auto p-4 md:p-6 space-y-3 md:space-y-4"
-        style={{ paddingBottom: '200px' }}
+        style={{ height: 'calc(100vh - 200px)' }}
       >
         {messages.map((message) => (
           <div
