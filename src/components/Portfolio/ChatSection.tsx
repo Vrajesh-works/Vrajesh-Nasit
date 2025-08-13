@@ -59,6 +59,9 @@ const ChatSection = () => {
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsTyping(true);
+    
+    // Immediately scroll when user sends a message
+    setTimeout(scrollToBottom, 50);
 
     // Simulate AI response delay
     setTimeout(() => {
