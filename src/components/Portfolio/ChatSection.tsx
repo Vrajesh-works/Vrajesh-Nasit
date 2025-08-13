@@ -20,20 +20,21 @@ const ChatSection = () => {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'start'
-    });
+    if (messagesContainerRef.current) {
+      // Scroll to bottom with extra padding to account for fixed input
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight + 200;
+    }
   };
 
   useEffect(() => {
     // Delay scroll to ensure DOM is updated after state change
     const timer = setTimeout(() => {
       scrollToBottom();
-    }, 50);
+    }, 100);
     return () => clearTimeout(timer);
   }, [messages, isTyping]);
 
@@ -117,7 +118,11 @@ const ChatSection = () => {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 md:p-6 pb-40 space-y-3 md:space-y-4">
+      <div 
+        ref={messagesContainerRef}
+        className="flex-1 overflow-y-auto p-4 md:p-6 space-y-3 md:space-y-4"
+        style={{ paddingBottom: '200px' }}
+      >
         {messages.map((message) => (
           <div
             key={message.id}
