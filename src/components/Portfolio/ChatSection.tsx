@@ -25,8 +25,7 @@ const ChatSection = () => {
 
   const scrollToBottom = () => {
     if (messagesContainerRef.current) {
-      // Scroll so messages end just above the input box (about 180px from bottom)
-      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight - messagesContainerRef.current.clientHeight + 20;
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
   };
 
