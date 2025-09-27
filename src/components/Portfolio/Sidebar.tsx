@@ -117,22 +117,39 @@ const Sidebar = ({ activeSection, onSectionChange, isMobileMenuOpen, onMobileMen
             <span>Available for work</span>
           </div>
           
-          <div className="flex justify-center gap-2 md:gap-3 mb-3 md:mb-4">
-            {socialLinks.map((social, index) => {
-              const Icon = social.icon;
-              return (
-                <a
-                  key={index}
-                  href={social.href}
-                  className="w-8 h-8 md:w-10 md:h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-lg flex items-center justify-center transition-all duration-200 hover-lift focus:outline-none focus:ring-2 focus:ring-focus-ring focus:ring-offset-2"
-                  aria-label={`Visit my ${social.label} profile`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon className="w-3 h-3 md:w-4 md:h-4" />
-                </a>
-              );
-            })}
+          <div className="flex items-center justify-between mb-3 md:mb-4">
+            {/* Instagram on the left */}
+            <a
+              href="#"
+              className="w-8 h-8 md:w-10 md:h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-lg flex items-center justify-center transition-all duration-200 hover-lift focus:outline-none focus:ring-2 focus:ring-focus-ring focus:ring-offset-2"
+              aria-label="Visit my Instagram profile"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Instagram className="w-3 h-3 md:w-4 md:h-4" />
+            </a>
+            
+            {/* GitHub and LinkedIn on the right */}
+            <div className="flex gap-2">
+              <a
+                href="#"
+                className="w-8 h-8 md:w-10 md:h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-lg flex items-center justify-center transition-all duration-200 hover-lift focus:outline-none focus:ring-2 focus:ring-focus-ring focus:ring-offset-2"
+                aria-label="Visit my GitHub profile"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="w-3 h-3 md:w-4 md:h-4" />
+              </a>
+              <a
+                href="#"
+                className="w-8 h-8 md:w-10 md:h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-lg flex items-center justify-center transition-all duration-200 hover-lift focus:outline-none focus:ring-2 focus:ring-focus-ring focus:ring-offset-2"
+                aria-label="Visit my LinkedIn profile"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin className="w-3 h-3 md:w-4 md:h-4" />
+              </a>
+            </div>
           </div>
           
           <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground opacity-75">
