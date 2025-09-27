@@ -15,7 +15,6 @@ import {
   X
 } from 'lucide-react';
 import ProfileAvatar from '../ui/ProfileAvatar';
-import ThemeToggle from '../ui/ThemeToggle';
 
 interface SidebarProps {
   activeSection: string;
@@ -134,7 +133,6 @@ const Sidebar = ({ activeSection, onSectionChange, isMobileMenuOpen, onMobileMen
                 </a>
               );
             })}
-            <ThemeToggle />
           </div>
           
           <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground opacity-75">
