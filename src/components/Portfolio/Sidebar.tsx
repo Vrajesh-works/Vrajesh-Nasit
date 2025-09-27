@@ -8,7 +8,7 @@ import {
   Star,
   Github,
   Linkedin,
-  Twitter,
+  Instagram,
   MapPin,
   Coffee,
   Menu,
@@ -36,7 +36,7 @@ const Sidebar = ({ activeSection, onSectionChange, isMobileMenuOpen, onMobileMen
   const socialLinks = [
     { icon: Github, href: '#', label: 'GitHub' },
     { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Instagram, href: '#', label: 'Instagram' },
   ];
 
   return (
