@@ -112,7 +112,7 @@ const ChatSection = () => {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="p-4 md:p-6 border-b border-border bg-gradient-hero">
+      <div className="p-4 md:p-6 border-b border-border bg-gradient-hero backdrop-blur-md bg-opacity-80">
         <h1 className="text-xl md:text-2xl font-bold text-foreground animate-fade-in">Chat with John's AI</h1>
         <p className="text-sm md:text-base text-muted-foreground mt-1 animate-fade-in" style={{ animationDelay: '0.1s' }}>
           Ask anything about my experience, projects, or skills
@@ -136,7 +136,7 @@ const ChatSection = () => {
               </div>
             )}
             
-            <div className={`chat-message ${message.sender}`}>
+            <div className={`chat-message ${message.sender} backdrop-blur-sm bg-opacity-90 border border-white/10 shadow-lg`}>
               <p className="text-sm leading-relaxed">{message.content}</p>
               <div className="text-xs opacity-70 mt-1">
                 {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -156,7 +156,7 @@ const ChatSection = () => {
             <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
               <Bot className="w-4 h-4 text-primary-foreground" />
             </div>
-            <div className="chat-message ai">
+            <div className="chat-message ai backdrop-blur-sm bg-opacity-90 border border-white/10 shadow-lg">
               <div className="flex gap-1">
                 <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce"></div>
                 <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -169,7 +169,7 @@ const ChatSection = () => {
       </div>
 
       {/* Fixed Input at Bottom */}
-      <div className="fixed bottom-0 left-0 md:left-sidebar right-0 bg-background/95 backdrop-blur-sm border-t border-border">
+      <div className="fixed bottom-0 left-0 md:left-sidebar right-0 bg-background/80 backdrop-blur-md border-t border-white/10 shadow-lg">
         {/* Input */}
         <div className="p-3 md:p-4">
           <div className="flex gap-2 md:gap-3 items-end">
