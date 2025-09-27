@@ -34,9 +34,9 @@ const Sidebar = ({ activeSection, onSectionChange, isMobileMenuOpen, onMobileMen
   ];
 
   const socialLinks = [
+    { icon: Instagram, href: '#', label: 'Instagram' },
     { icon: Github, href: '#', label: 'GitHub' },
     { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
   ];
 
   return (
